@@ -10,16 +10,16 @@ class TestClassCalculator(unittest.TestCase):
 
     def test_subtract(self):
         difference = Calculator(5,2)
-        self.assertEqual(3,difference.add())
+        self.assertEqual(3,difference.subtract())
         
 
     def test_multiply(self):
         product = Calculator(1,2)
-        self.assertEqual(2,product.add())
+        self.assertEqual(2,product.multiply())
 
     def test_divide(self):
         quotient = Calculator(1,2)
-        self.assertEqual(0.5,quotient.add())
+        self.assertEqual(0.5,quotient.divide())
 
 
 

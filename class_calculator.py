@@ -1,19 +1,25 @@
 class Calculator:
     def __init__(self,x,y):
-        pass
+        self.x = x
+        self.y = y
 
 
     def add(self):
-        pass
+        return self.x + self.y
 
 
     def subtract(self):
-        pass
+        return self.x - self.y
 
 
     def multiply(self):
-        pass
+        return self.x  * self.y
 
 
     def divide(self):
-        pass
+        try:
+            quo = self.x / self.y
+        except ZeroDivisionError:
+            return "ERR"
+        else:
+            return quo
