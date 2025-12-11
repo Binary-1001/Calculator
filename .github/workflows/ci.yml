@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 name: Python CI/CD
 
 on:
@@ -84,7 +84,8 @@ jobs:
   #         # example:
   #         # scp file user@server:/path/
   #         # or build and push docker images
-=======
+
+
 name: Python CI/CD
 
 on:
