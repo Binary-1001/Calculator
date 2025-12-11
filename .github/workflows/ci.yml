@@ -168,6 +168,6 @@ jobs:
   #       run: |
   #         echo "🚀 Deployment step running..."
   #         echo "This is where real deploy commands would go"
-  #         # example:
+  #         # example
   #         # scp file user@server:/path/
   #         # or build and push docker images
