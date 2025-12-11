@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Python CI/CD
 
 on:
@@ -83,3 +84,90 @@ jobs:
   #         # example:
   #         # scp file user@server:/path/
   #         # or build and push docker images
+=======
+name: Python CI/CD
+
+on:
+  push:
+    branches: [ "**" ]       # run on ALL branches
+  pull_request:
+    branches: [ "**" ]
+  workflow_dispatch: {}       # manual trigger
+
+jobs:
+
+  ############################################################
+  # 1️⃣ BUILD
+  ############################################################
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          echo "📦 Installing dependencies..."
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Build step complete
+        run: echo "✅ Build Complete"
+
+      # Save dependencies or build outputs (optional)
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip
+
+  ############################################################
+  # 2️⃣ TEST
+  ############################################################
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run unit tests
+        run: |
+          echo "🧪 Running tests..."
+          python -m unittest discover -v
+
+  # ############################################################
+  # # 3️⃣ DEPLOY
+  # ############################################################
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   if: github.ref == 'refs/heads/main'   # ONLY deploy on main branch
+  #   environment: production
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+
+  #     - name: Deploying...
+  #       run: |
+  #         echo "🚀 Deployment step running..."
+  #         echo "This is where real deploy commands would go"
+  #         # example:
+  #         # scp file user@server:/path/
+  #         # or build and push docker images
+>>>>>>> ff25f50 (updated the readme.)
